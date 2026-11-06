@@ -9,11 +9,20 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 045c101ecafa4d54186cc47c6b5c67de
   - enabled: 1
-    path: Assets/Scenes/Schip1.unity
+    path: Assets/Scenes/intro.unity
+    guid: 7b959569900621346b90c500d9d8f8ca
+  - enabled: 1
+    path: Assets/Scenes/level-1.unity
+    guid: 6ea8ed631c7e9044cb53a577988b02a7
+  - enabled: 1
+    path: Assets/Scenes/level-2.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/Scenes/Deathscreen.unity
+    path: Assets/Scenes/level-1-death.unity
     guid: 0d266b01a4774374696425f943e4f20a
+  - enabled: 1
+    path: Assets/Scenes/level-2-death.unity
+    guid: d927ad46129dbed4eb7583bc456b727c
   - enabled: 1
     path: Assets/Scenes/WinScreen.unity
     guid: f52e8fd654ad9d5439c7eb1824b03a28

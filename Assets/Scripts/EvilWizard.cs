@@ -6,20 +6,20 @@ public class EvilWizard : MonoBehaviour
 
     public GameObject fireballPrefab;
     public Transform firePoint;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public SpriteRenderer evilWizard;
+
+
     void Start()
     {
-
-        
+        evilWizard = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Time.time % 1.5f < Time.deltaTime)
-        
+        if (Time.time % 2f < Time.deltaTime)
+
         {
-                Instantiate(fireballPrefab, firePoint.position, firePoint.rotation);
+            Instantiate(fireballPrefab, firePoint.position, firePoint.rotation);
         }
     }
 
@@ -27,7 +27,7 @@ public class EvilWizard : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene("Deathscreen");
+            SceneManager.LoadScene("level-2-death");
         }
     }
 }

@@ -19,7 +19,7 @@ public class bullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene("Deathscreen");
+            SceneManager.LoadScene("level-1-death");
         }
 
         if (collision.gameObject.CompareTag("ground"))

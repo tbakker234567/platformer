@@ -5,13 +5,19 @@ TagManager:
   serializedVersion: 3
   tags:
   - ground
-  - barrier
   - Enemy1
   - Playerstep
   - wall
   - wand
   - evilguy
   - magicbullet
+  - ship_entrance
+  - Barrier
+  - Barrier-1
+  - barrier
+  - cloud
+  - sign-1
+  - sign-2
   layers:
   - Default
   - TransparentFX
@@ -46,6 +52,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3314623253
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

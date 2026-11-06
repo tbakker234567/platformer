@@ -271,6 +271,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sunPrefab: {fileID: 7915950749581840605, guid: 227eb51f682b93448a8a28808f87414e, type: 3}
+  speed: 2
+  targets: []
 --- !u!1 &6081612002697071390
 GameObject:
   m_ObjectHideFlags: 0

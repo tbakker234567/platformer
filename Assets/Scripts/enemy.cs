@@ -31,7 +31,7 @@ public class enemy : MonoBehaviour
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-            SceneManager.LoadScene("Deathscreen");
+            SceneManager.LoadScene("level-1-death");
         }
     }
 

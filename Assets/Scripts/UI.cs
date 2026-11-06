@@ -4,21 +4,15 @@ using UnityEngine.SceneManagement;
 
 public class mainmenu : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void PlayGame()
     {
-        SceneManager.LoadScene("Schip1");
+        SceneManager.LoadScene("intro");
     }
 
     public void Tomainmenu()
@@ -26,9 +20,14 @@ public class mainmenu : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
-    public void Restart()
+    public void Restartlevel1()
     {
-        SceneManager.LoadScene("Schip1");
+        SceneManager.LoadScene("level-1");
+    }
+
+        public void Restartlevel2()
+    {
+        SceneManager.LoadScene("level-2");
     }
 
     public void QuitGame()

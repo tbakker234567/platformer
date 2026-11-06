@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,15 +12,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Sprite[] Player_sprites;
     Sprite newSprite;
 
-    public float moveSpeed = 5f, jumpForce = 10f;
+    public float moveSpeed = 5f, jumpForce = 10f, fireTimer = 0;
     public LayerMask groundLayer;
     public Transform groundCheck;
     public Vector2 groundCheckSize = new Vector2(0.5f, 0.1f);
 
     private Rigidbody2D rb;
-    private bool isGrounded, jumpPressed, jumpHeld, hasWand = false;
+    private bool isGrounded, jumpPressed, jumpHeld;
+    public bool hasWand = false;
 
     private SpriteRenderer player_spriteRenderer;
+
+    public Image signText1, signText2;
 
     void Start()
     {
@@ -56,11 +61,12 @@ public class PlayerController : MonoBehaviour
         }
 
         if (hasWand == true)
-{
-        if (Input.GetButtonDown("Fire1"))
         {
-            Instantiate(MagicBulletPrefab, firePoint.position, firePoint.rotation);
-        }
+            if (Input.GetButtonDown("Fire1") && fireTimer >= 1f)
+            {
+                Instantiate(MagicBulletPrefab, firePoint.position, firePoint.rotation);
+                fireTimer = 0f;
+            }
         }
     }
 
@@ -75,6 +81,8 @@ public class PlayerController : MonoBehaviour
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f);
         }
+
+        fireTimer += Time.fixedDeltaTime;
     }
 
     bool IsGrounded()
@@ -82,17 +90,56 @@ public class PlayerController : MonoBehaviour
         return Physics2D.BoxCast(groundCheck.position, groundCheckSize, 0f, Vector2.down, 0.1f, groundLayer);
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-    }
-
     void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("Collided with: " + collision.gameObject.name);
+
         if (collision.gameObject.CompareTag("wand"))
         {
-        newSprite = Player_sprites[1];
-        GetComponent<SpriteRenderer>().sprite = newSprite;
-        hasWand = true;
+            newSprite = Player_sprites[1];
+            GetComponent<SpriteRenderer>().sprite = newSprite;
+            hasWand = true;
+        }
+
+        if (collision.gameObject.CompareTag("ship_entrance") && hasWand && true)
+        {
+            SceneManager.LoadScene("level-2");
+        }
+
+        if (collision.gameObject.CompareTag("sign-1"))
+        {
+            signText1.gameObject.SetActive(true);
+        }
+
+        if (collision.gameObject.CompareTag("sign-2"))
+        {
+            signText2.gameObject.SetActive(true);
+        }
+
+        if (collision.gameObject.CompareTag("cloud"))
+        {
+            SceneManager.LoadScene("level-1");
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("sign-1"))
+        {
+            signText1.gameObject.SetActive(false);
+        }
+
+        if (collision.gameObject.CompareTag("sign-2"))
+        {
+            signText2.gameObject.SetActive(false);
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Barrier"))
+        {
+            SceneManager.LoadScene("level-1-death");
         }
     }
 }

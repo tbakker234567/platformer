@@ -3,8 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class walker : MonoBehaviour
 {
-        public Transform[] targets;
-        private SpriteRenderer blobmeister;
+    public Transform[] targets;
+    private SpriteRenderer blobmeister;
 
     private int currentPointIndex = 0;
 
@@ -16,7 +16,7 @@ public class walker : MonoBehaviour
     }
 
     // Update is called once per frame
-       void Update()
+    void Update()
     {
         float move = Input.GetAxis("Horizontal");
 
@@ -46,7 +46,7 @@ public class walker : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene("Deathscreen");
+            SceneManager.LoadScene("level-1-death");
         }
 
         if (collision.gameObject.CompareTag("magicbullet"))
