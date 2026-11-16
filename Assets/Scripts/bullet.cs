@@ -3,28 +3,48 @@ using UnityEngine.SceneManagement;
 
 public class bullet : MonoBehaviour
 {
-    float speed = 8f;
+    float speed = 4f;
+    private Transform playerTransform;
+
 
     void Start()
     {
+        GameObject player = GameObject.FindWithTag("Player");
+
+        if (player != null)
+        {
+            playerTransform = player.transform;
+        }
+
+        Destroy(gameObject, 2f);
     }
 
     void Update()
     {
-        transform.Translate(Vector2.right * speed * Time.deltaTime);
-        GameObject.Destroy(gameObject, 1f);
+        if (playerTransform != null)
+        {
+            Vector2 direction = (playerTransform.position - transform.position).normalized;
+
+            transform.Translate(direction * speed * Time.deltaTime, Space.World);
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene("level-1-death");
+            SceneManager.LoadScene("level-2-death");
         }
 
         if (collision.gameObject.CompareTag("ground"))
         {
             GameObject.Destroy(gameObject);
         }
+         if (collision.gameObject.CompareTag("magicbullet"))
+        {
+            GameObject.Destroy(collision.gameObject);
+            GameObject.Destroy(gameObject);
+        }
     }
 }
+
